@@ -1,0 +1,342 @@
+---
+---
+
+<!-- AI Chatbot Widget -->
+<div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+  <!-- Chat Toggle Button -->
+  <button 
+    id="chat-toggle" 
+    class="w-14 h-14 bg-gradient-to-r from-primary to-secondary rounded-full shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-110 transition-all duration-300 group"
+  >
+    <svg id="chat-icon" class="w-6 h-6 text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+    <svg id="close-icon" class="w-6 h-6 text-white hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 sm:w-96 glass rounded-2xl shadow-2xl shadow-primary/20 overflow-hidden transform transition-all duration-300 scale-95 opacity-0">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-primary to-secondary p-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-white/20 dark:bg-white/20 light:bg-black/20 rounded-full flex items-center justify-center">
+          <span class="text-xl">🤖</span>
+        </div>
+        <div>
+          <h3 class="text-white dark:text-white light:text-dark font-semibold">Faril's AI Assistant</h3>
+          <p class="text-white/70 dark:text-white/70 light:text-dark/70 text-xs flex items-center gap-1">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            Online - Ready to help
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4">
+      <!-- Welcome Message -->
+      <div class="flex gap-3">
+        <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-sm">🤖</span>
+        </div>
+        <div class="bg-white/10 dark:bg-white/10 light:bg-black/10 rounded-2xl rounded-tl-none p-3 max-w-[80%]">
+          <p class="text-light dark:text-light light:text-dark text-sm">
+            Halo! 👋 Saya AI Assistant Faril. Ada yang bisa saya bantu?
+          </p>
+          <p class="text-light/50 dark:text-light/50 light:text-dark/50 text-xs mt-2">
+            Kamu bisa bertanya tentang Faril, skill, project, atau apapun!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="px-4 pb-2">
+      <div class="flex flex-wrap gap-2">
+        <button class="quick-action px-3 py-1 bg-white/5 dark:bg-white/5 light:bg-black/5 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 rounded-full text-xs text-light/70 dark:text-light/70 light:text-dark/70 hover:text-light dark:hover:text-light light:hover:text-dark transition-colors">
+          👋 Siapa Faril?
+        </button>
+        <button class="quick-action px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full text-xs text-light/70 hover:text-light transition-colors">
+          💼 Projects
+        </button>
+        <button class="quick-action px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full text-xs text-light/70 hover:text-light transition-colors">
+          🛠️ Skills
+        </button>
+        <button class="quick-action px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full text-xs text-light/70 hover:text-light transition-colors">
+          📫 Contact
+        </button>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-4 border-t border-white/10">
+      <div class="flex items-center gap-2 mb-2">
+        <input 
+          type="text" 
+          id="chat-input" 
+          placeholder="Ketik pesan..." 
+          class="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-light text-sm placeholder-light/40"
+        />
+        <button 
+          id="send-btn" 
+          class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center hover:opacity-90 transition-opacity"
+        >
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+        </button>
+      </div>
+      <div class="text-[10px] text-light/40 dark:text-light/40 light:text-dark/40 text-center mt-1">Tanpa buatan EAI, murni script custom di portfolio ini.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Chatbot Knowledge Base
+  const knowledge = {
+    name: "Faril Putra Pratama",
+    school: "SMK Taruna Bangsa",
+    grade: "Kelas 10",
+    location: "Bekasi, Indonesia",
+    role: "Python Enthusiast & Web Dev Beginner",
+    github: "https://github.com/FARILtau72",
+    instagram: "@fr.project.id",
+    linkedin: "faril putra pratama",
+    skills: ["Python", "HTML", "CSS", "Tailwind CSS", "Bootstrap", "Git"],
+    learning: ["IDCamp 2025", "IT Support Google Certificate", "JavaScript & React"],
+    projects: [
+      { name: "BIMA V2", desc: "Web project dengan 3 stars", link: "https://github.com/FARILtau72/BIMAV2" },
+      { name: "Checker Stress", desc: "SC CODE ALL IN ONE", link: "https://github.com/FARILtau72/Chekerstress" },
+      { name: "Short.ly", desc: "URL Shortener", link: "https://github.com/FARILtau72/short.ly" },
+      { name: "RPL V2", desc: "Project untuk kelas RPL", link: "https://github.com/FARILtau72/rplv2" }
+    ],
+    volunteer: "Volunteer Staff at Cosmic Security",
+    stats: { repos: 32, contributions: 150, followers: 2, following: 7 }
+  };
+
+  // AI Response Generator - Enhanced
+  let modeFormal = false;
+  function generateResponse(userMessage) {
+    const msg = userMessage.toLowerCase();
+    // Mode switch
+    if (msg.includes('mode formal')) {
+      modeFormal = true;
+      return 'Mode formal diaktifkan. Saya akan menjawab dengan bahasa yang lebih sopan.';
+    }
+    if (msg.includes('mode santai')) {
+      modeFormal = false;
+      return 'Mode santai diaktifkan. Jawaban akan lebih kasual dan friendly!';
+    }
+    // Greetings
+    if (msg.match(/^(halo|hai|hi|hello|hey|hola)/)) {
+      return modeFormal
+        ? `Salam kenal. Saya asisten AI untuk portfolio ${knowledge.name}. Silakan ajukan pertanyaan Anda.`
+        : `Halo juga! 👋 Aku AI Assistant-nya Faril. Mau tanya apa aja, boleh kok!`;
+    }
+    // About Faril
+    if (msg.includes('siapa') || msg.includes('faril') || msg.includes('about') || msg.includes('tentang')) {
+      return modeFormal
+        ? `${knowledge.name} adalah seorang ${knowledge.role} yang bersekolah di ${knowledge.school} ${knowledge.grade}, berdomisili di ${knowledge.location}. Aktif sebagai ${knowledge.volunteer}.`
+        : `Faril itu anak ${knowledge.school}, kelas 10, suka Python & web dev, aktif juga di ${knowledge.volunteer}. 🚀`;
+    }
+    // Skills
+    if (msg.includes('skill') || msg.includes('bisa') || msg.includes('kemampuan') || msg.includes('tech')) {
+      return modeFormal
+        ? `Faril menguasai: ${knowledge.skills.join(', ')}. Saat ini sedang mempelajari ${knowledge.learning.join(', ')}.`
+        : `Skill Faril: ${knowledge.skills.join(', ')}. Lagi ngulik juga nih: ${knowledge.learning.join(', ')}! 💪`;
+    }
+    // Projects
+    if (msg.includes('project') || msg.includes('proyek') || msg.includes('karya') || msg.includes('portfolio')) {
+      const projectList = knowledge.projects.map(p => `• ${p.name}: ${p.desc}`).join('\n');
+      return modeFormal
+        ? `Berikut beberapa project utama Faril:\n${projectList}\n\nTotal: ${knowledge.stats.repos} repositori di GitHub.`
+        : `Ini dia beberapa project Faril:\n${projectList}\n\nRepo lain cek aja di GitHub! 🔥`;
+    }
+    // Contact
+    if (msg.includes('contact') || msg.includes('hubungi') || msg.includes('kontak') || msg.includes('reach')) {
+      return modeFormal
+        ? `Anda dapat menghubungi Faril melalui:\n• GitHub: ${knowledge.github}\n• Instagram: ${knowledge.instagram}\n• LinkedIn: ${knowledge.linkedin}\nAtau isi form kontak di website ini.`
+        : `Mau kontak Faril? Bisa lewat GitHub, IG, LinkedIn, atau isi form di web ini ya! 📫`;
+    }
+    // GitHub
+    if (msg.includes('github') || msg.includes('repository') || msg.includes('repo')) {
+      return modeFormal
+        ? `Faril memiliki ${knowledge.stats.repos} repositori di GitHub dengan ${knowledge.stats.contributions}+ kontribusi. Silakan cek: ${knowledge.github}`
+        : `Repo Faril ada ${knowledge.stats.repos} di GitHub, kontribusi udah ${knowledge.stats.contributions}+! Lihat aja: ${knowledge.github} 🐙`;
+    }
+    // School/Education
+    if (msg.includes('sekolah') || msg.includes('pendidikan') || msg.includes('school') || msg.includes('belajar')) {
+      return modeFormal
+        ? `Faril adalah siswa ${knowledge.grade} di ${knowledge.school}, jurusan Rekayasa Perangkat Lunak. Saat ini aktif belajar di IDCamp 2025 dan mengambil IT Support Google Certificate.`
+        : `Faril anak RPL ${knowledge.school}, lagi aktif belajar di IDCamp & Google IT Support juga! 🎓`;
+    }
+    // Location
+    if (msg.includes('mana') || msg.includes('lokasi') || msg.includes('location') || msg.includes('where')) {
+      return modeFormal
+        ? `Faril berdomisili di ${knowledge.location} dan bersekolah di ${knowledge.school}.`
+        : `Faril tinggal di ${knowledge.location}, sekolah di ${knowledge.school}. 📍`;
+    }
+    // Thanks
+    if (msg.includes('terima kasih') || msg.includes('thanks') || msg.includes('makasih')) {
+      return modeFormal
+        ? `Sama-sama. Senang dapat membantu Anda. Jika ada pertanyaan lain, silakan ajukan.`
+        : `Sama-sama! 😊 Kalau mau tanya lagi, gas aja ya!`;
+    }
+    // Motivasi
+    if (msg.includes('motivasi') || msg.includes('semangat') || msg.includes('capek') || msg.includes('down')) {
+      const motivasi = [
+        'Jangan menyerah, setiap error itu pelajaran! 💡',
+        'Proses belajar memang nggak selalu mudah, tapi hasilnya pasti sepadan. Semangat terus! 🚀',
+        'Capek itu wajar, istirahat sebentar lalu lanjut lagi. Kamu pasti bisa!',
+        'Setiap hari belajar sedikit lebih baik dari kemarin, itu sudah keren!'
+      ];
+      return motivasi[Math.floor(Math.random() * motivasi.length)];
+    }
+    // Tips belajar
+    if (msg.includes('tips') || msg.includes('belajar gimana') || msg.includes('cara belajar')) {
+      const tips = [
+        'Belajar konsisten tiap hari, walau sebentar. Progress kecil lebih baik daripada tidak sama sekali.',
+        'Jangan takut gagal, error itu teman belajar terbaik.',
+        'Coba buat catatan atau dokumentasi sendiri setiap selesai belajar.',
+        'Ikut komunitas atau forum, diskusi bikin makin paham!',
+        'Praktek langsung, jangan cuma baca teori.'
+      ];
+      return tips[Math.floor(Math.random() * tips.length)];
+    }
+    // Quick reply
+    if (msg.includes('quick reply') || msg.includes('shortcut') || msg.includes('cepat')) {
+      return 'Kamu bisa klik tombol di atas (Quick Action) untuk pertanyaan umum seperti: Siapa Faril, Projects, Skills, Contact.';
+    }
+    // Help
+    if (msg.includes('help') || msg.includes('bantu') || msg.includes('apa saja')) {
+      return modeFormal
+        ? 'Saya dapat membantu Anda mengenal Faril, skill, project, kontak, pendidikan, motivasi, dan tips belajar. Silakan ajukan pertanyaan.'
+        : 'Aku bisa bantu info tentang Faril, skill, project, motivasi, tips belajar, dan kontak. Tanya aja ya!';
+    }
+    // Default response
+    const defaults = [
+      'Pertanyaan menarik! Coba tanya tentang skill, project, motivasi, atau tips belajar ya! 😊',
+      'Aku belum paham pertanyaan itu. Mau tanya tentang Faril, project, atau skill-nya? Atau ketik "help".',
+      'Maaf, aku belum ngerti. Coba klik tombol quick action di atas atau tanya dengan kata lain! 👆'
+    ];
+    return defaults[Math.floor(Math.random() * defaults.length)];
+  }
+
+  // DOM Elements
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const chatIcon = document.getElementById('chat-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+  const sendBtn = document.getElementById('send-btn');
+  const quickActions = document.querySelectorAll('.quick-action');
+
+  let isOpen = false;
+
+  // Toggle Chat
+  chatToggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWindow?.classList.remove('hidden');
+      setTimeout(() => {
+        chatWindow?.classList.remove('scale-95', 'opacity-0');
+        chatWindow?.classList.add('scale-100', 'opacity-100');
+      }, 10);
+      chatIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    } else {
+      chatWindow?.classList.add('scale-95', 'opacity-0');
+      chatWindow?.classList.remove('scale-100', 'opacity-100');
+      setTimeout(() => {
+        chatWindow?.classList.add('hidden');
+      }, 300);
+      chatIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  });
+
+  // Add Message to Chat
+  function addMessage(text: string, isUser: boolean) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `flex gap-3 ${isUser ? 'flex-row-reverse' : ''}`;
+    
+    if (isUser) {
+      messageDiv.innerHTML = `
+        <div class="w-8 h-8 bg-primary/30 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-sm">👤</span>
+        </div>
+        <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl rounded-tr-none p-3 max-w-[80%]">
+          <p class="text-white dark:text-white light:text-dark text-sm">${text}</p>
+        </div>
+      `;
+    } else {
+      messageDiv.innerHTML = `
+        <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-sm">🤖</span>
+        </div>
+        <div class="bg-white/10 dark:bg-white/10 light:bg-black/10 rounded-2xl rounded-tl-none p-3 max-w-[80%]">
+          <p class="text-light dark:text-light light:text-dark text-sm whitespace-pre-line">${text}</p>
+        </div>
+      `;
+    }
+    
+    chatMessages?.appendChild(messageDiv);
+    chatMessages?.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+  }
+
+  // Show Typing Indicator
+  function showTyping(): HTMLElement {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'flex gap-3 typing-indicator';
+    typingDiv.innerHTML = `
+      <div class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+        <span class="text-sm">🤖</span>
+      </div>
+      <div class="bg-white/10 dark:bg-white/10 light:bg-black/10 rounded-2xl rounded-tl-none p-3">
+        <div class="flex gap-1">
+          <span class="w-2 h-2 bg-light/50 dark:bg-light/50 light:bg-dark/50 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+          <span class="w-2 h-2 bg-light/50 dark:bg-light/50 light:bg-dark/50 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+          <span class="w-2 h-2 bg-light/50 dark:bg-light/50 light:bg-dark/50 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+        </div>
+      </div>
+    `;
+    chatMessages?.appendChild(typingDiv);
+    chatMessages?.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+    return typingDiv;
+  }
+
+  // Send Message
+  function sendMessage(text: string) {
+    if (!text.trim()) return;
+    
+    addMessage(text, true);
+    chatInput.value = '';
+    
+    const typingIndicator = showTyping();
+    
+    setTimeout(() => {
+      typingIndicator.remove();
+      const response = generateResponse(text);
+      addMessage(response, false);
+    }, 800 + Math.random() * 700);
+  }
+
+  // Event Listeners
+  sendBtn?.addEventListener('click', () => sendMessage(chatInput?.value || ''));
+  
+  chatInput?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMessage(chatInput.value);
+    }
+  });
+
+  quickActions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.textContent?.trim() || '';
+      sendMessage(text);
+    });
+  });
+</script>

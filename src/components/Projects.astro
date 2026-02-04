@@ -1,0 +1,172 @@
+---
+const projects = [
+  {
+    title: 'BIMA V2',
+    description: 'Project web dengan HTML yang mendapatkan 3 stars dan 1 fork di GitHub. Menunjukkan kemampuan dalam membangun aplikasi web. Terdapat dokumentasi lengkap di repo.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/FARILtau72/BIMAV2',
+    stars: 3,
+    forks: 1,
+    // replace these paths with your actual images in the public folder
+    image: '/img/bima.png',
+    featured: true,
+  },
+  {
+    title: 'Checker Stress',
+    description: 'SC CODE ALL IN ONE - Aplikasi untuk mengecek dan mengelola berbagai tools dalam satu tempat. Dokumentasi tersedia di repo.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/FARILtau72/Chekerstress',
+    stars: 1,
+    forks: 0,
+    image: '/img/projects/checker.png',
+    featured: true,
+  },
+  {
+    title: 'RPL V2',
+    description: 'Project terbaru untuk kelas RPL dengan berbagai fitur pembelajaran interaktif. Dokumentasi lengkap tersedia di repo.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/FARILtau72/rplv2',
+    stars: 0,
+    forks: 0,
+    image: '/img/projects/rpl.png',
+    featured: true,
+  },
+  {
+    title: 'Short.ly',
+    description: 'URL Shortener - Aplikasi untuk mempersingkat URL dengan interface minimalis. Ada dokumentasi penggunaan di repo.',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/FARILtau72/short.ly',
+    stars: 0,
+    forks: 0,
+    image: '/img/shortly.png',
+    featured: true,
+  },
+];
+// show only selected projects first (order: Short.ly, BIMA V2)
+const visibleProjects = ['Short.ly','BIMA V2']
+  .map(title => projects.find(p => p.title === title))
+  .filter(Boolean);
+---
+
+<section id="projects" class="py-32 relative">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="text-primary font-mono text-sm mb-4">// MY WORK</p>
+      <h2 class="text-3xl md:text-5xl font-bold mb-4">
+        <span class="text-light dark:text-light light:text-dark">Featured</span>
+        <span class="gradient-text"> Projects</span>
+      </h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mb-6"></div>
+      <p class="text-light/60 dark:text-light/60 light:text-dark/60 max-w-2xl mx-auto">
+        Beberapa project yang sudah saya kerjakan. Sebagian besar masih dalam tahap pembelajaran, 
+        tapi saya terus berkembang setiap harinya! 🚀
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {visibleProjects.map((project, index) => (
+        <div 
+          class={`project-card group relative glass rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-500 ${project.featured ? 'ring-1 ring-primary/30' : ''}`}
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          {/* Featured Badge */}
+          {project.featured && (
+            <div class="absolute top-4 right-4 z-20">
+              <span class="px-3 py-1 bg-gradient-to-r from-primary to-secondary rounded-full text-xs font-medium">Featured</span>
+            </div>
+          )}
+
+          {/* Project Image/Icon */}
+          <div class="relative h-48 lg:h-56 overflow-hidden">
+            {project.image && (project.image.startsWith('/') || project.image.startsWith('http')) ? (
+              <img src={project.image} alt={project.title} class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            ) : (
+              <div class="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                <span class="text-6xl">{project.image}</span>
+              </div>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-darker/30 to-transparent"></div>
+          </div>
+
+          {/* Content */}
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-light dark:text-light light:text-dark mb-2 group-hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-light/60 dark:text-light/60 light:text-dark/60 text-sm mb-4 line-clamp-2">
+              {project.description}
+            </p>
+
+            {/* Tech Stack */}
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.tech.map((tech) => (
+                <span class="px-3 py-1 bg-white/5 dark:bg-white/5 light:bg-black/5 rounded-lg text-xs text-light/70 dark:text-light/70 light:text-dark/70">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Stats & Link */}
+            <div class="flex items-center justify-between pt-4 border-t border-white/10">
+              <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1 text-light/60 dark:text-light/60 light:text-dark/60">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-sm">{project.stars}</span>
+                </div>
+                <div class="flex items-center gap-1 text-light/60 dark:text-light/60 light:text-dark/60">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M7 5C7 3.89 7.89 3 9 3H15C16.11 3 17 3.89 17 5V7H19C20.11 7 21 7.89 21 9V19C21 20.11 20.11 21 19 21H5C3.89 21 3 20.11 3 19V9C3 7.89 3.89 7 5 7H7V5M9 5V7H15V5H9M5 9V19H19V9H5Z"/>
+                  </svg>
+                  <span class="text-sm">{project.forks}</span>
+                </div>
+              </div>
+              
+              <a 
+                href={project.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-black/5 hover:bg-primary/20 rounded-lg transition-colors group/btn"
+              >
+                <svg class="w-4 h-4 text-light/70 dark:text-light/70 light:text-dark/70 group-hover/btn:text-light" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span class="text-sm text-light/70 dark:text-light/70 light:text-dark/70 group-hover/btn:text-light">Code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* View More */}
+    <div class="text-center mt-12">
+      <a 
+        href="https://github.com/FARILtau72?tab=repositories" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 px-8 py-4 glass rounded-xl font-medium hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 transition-all duration-300 hover:scale-105 group"
+      >
+        <span class="text-light dark:text-light light:text-dark">View All 32 Repositories</span>
+        <svg class="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

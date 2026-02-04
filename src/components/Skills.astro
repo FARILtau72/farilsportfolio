@@ -1,0 +1,151 @@
+---
+const skills = [
+  { name: 'Python', level: 75, icon: '🐍', color: 'from-yellow-400 to-blue-500' },
+  { name: 'HTML5', level: 85, icon: '🌐', color: 'from-orange-500 to-red-500' },
+  { name: 'CSS3', level: 70, icon: '🎨', color: 'from-blue-400 to-blue-600' },
+  { name: 'Tailwind CSS', level: 65, icon: '💨', color: 'from-cyan-400 to-blue-500' },
+  { name: 'Bootstrap', level: 70, icon: '🅱️', color: 'from-purple-500 to-purple-700' },
+  { name: 'Git', level: 60, icon: '📦', color: 'from-orange-500 to-red-600' },
+];
+
+const tools = [
+  { name: 'VS Code', icon: '💻' },
+  { name: 'GitHub', icon: '🐙' },
+  { name: 'Figma', icon: '🎨' },
+  { name: 'Terminal', icon: '⌨️' },
+  { name: 'Chrome DevTools', icon: '🔧' },
+  { name: 'Postman', icon: '📮' },
+];
+---
+
+<section id="skills" class="py-32 relative overflow-hidden">
+  <!-- Background Decoration -->
+  <div class="absolute top-1/2 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="text-primary font-mono text-sm mb-4">// MY TECH STACK</p>
+      <h2 class="text-3xl md:text-5xl font-bold mb-4">
+        <span class="text-light dark:text-light light:text-dark">Skills &</span>
+        <span class="gradient-text"> Technologies</span>
+      </h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Skills Progress -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-semibold text-light dark:text-light light:text-dark mb-6 flex items-center gap-3">
+          <span class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-sm">⚡</span>
+          Languages & Frameworks
+        </h3>
+        
+        {skills.map((skill, index) => (
+          <div class="skill-item glass rounded-xl p-4 hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 transition-all duration-300" style={`animation-delay: ${index * 100}ms`}>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-3">
+                <span class="text-2xl">{skill.icon}</span>
+                <span class="font-medium text-light dark:text-light light:text-dark">{skill.name}</span>
+              </div>
+              <span class="text-sm text-light/60 dark:text-light/60 light:text-dark/60">{skill.level}%</span>
+            </div>
+            <div class="h-2 bg-white/10 dark:bg-white/10 light:bg-black/10 rounded-full overflow-hidden">
+              <div 
+                class={`skill-bar h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000`}
+                style={`width: 0%`}
+                data-width={`${skill.level}%`}
+              ></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Tools & Currently Learning -->
+      <div class="space-y-8">
+        <!-- Tools -->
+        <div>
+          <h3 class="text-xl font-semibold text-light dark:text-light light:text-dark mb-6 flex items-center gap-3">
+            <span class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-sm">🛠️</span>
+            Tools I Use
+          </h3>
+          
+          <div class="grid grid-cols-3 gap-4">
+            {tools.map((tool, index) => (
+              <div class="tool-card glass rounded-xl p-4 text-center hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 hover:scale-105 transition-all duration-300 cursor-pointer" style={`animation-delay: ${index * 100}ms`}>
+                <span class="text-3xl mb-2 block">{tool.icon}</span>
+                <span class="text-sm text-light/70 dark:text-light/70 light:text-dark/70">{tool.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Currently Learning -->
+        <div class="glass rounded-2xl p-6">
+          <h3 class="text-xl font-semibold text-light dark:text-light light:text-dark mb-4 flex items-center gap-3">
+            <span class="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center text-sm">📚</span>
+            Currently Learning
+          </h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 p-3 bg-white/5 dark:bg-white/5 light:bg-black/5 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center">
+                <span class="text-xl">🎓</span>
+              </div>
+              <div>
+                <p class="font-medium text-light dark:text-light light:text-dark">IDCamp 2025</p>
+                <p class="text-sm text-light/60 dark:text-light/60 light:text-dark/60">Dicoding & Indosat Program</p>
+              </div>
+              <span class="ml-auto px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Active</span>
+            </div>
+            
+            <div class="flex items-center gap-4 p-3 bg-white/5 dark:bg-white/5 light:bg-black/5 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-xl flex items-center justify-center">
+                <span class="text-xl">🤖</span>
+              </div>
+              <div>
+                <p class="font-medium text-light dark:text-light light:text-dark">IT Support - Google</p>
+                <p class="text-sm text-light/60 dark:text-light/60 light:text-dark/60">Professional Certificate</p>
+              </div>
+              <span class="ml-auto px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">In Progress</span>
+            </div>
+
+            <div class="flex items-center gap-4 p-3 bg-white/5 dark:bg-white/5 light:bg-black/5 rounded-xl">
+              <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center">
+                <span class="text-xl">⚛️</span>
+              </div>
+              <div>
+                <p class="font-medium text-light dark:text-light light:text-dark">JavaScript & React</p>
+                <p class="text-sm text-light/60 dark:text-light/60 light:text-dark/60">Next.js Framework</p>
+              </div>
+              <span class="ml-auto px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs">Planning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animate skill bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const skillBars = entry.target.querySelectorAll('.skill-bar');
+        skillBars.forEach(bar => {
+          const width = bar.getAttribute('data-width');
+          setTimeout(() => {
+            (bar as HTMLElement).style.width = width || '0%';
+          }, 200);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const skillsSection = document.getElementById('skills');
+  if (skillsSection) {
+    observer.observe(skillsSection);
+  }
+</script>
