@@ -71,7 +71,7 @@ const tools = [
             Tools I Use
           </h3>
           
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {tools.map((tool, index) => (
               <div class="tool-card glass rounded-xl p-4 text-center hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-black/10 hover:scale-105 transition-all duration-300 cursor-pointer" style={`animation-delay: ${index * 100}ms`}>
                 <span class="text-3xl mb-2 block">{tool.icon}</span>

@@ -48,7 +48,7 @@ function initHeroScene() {
     new THREE.TetrahedronGeometry(0.3, 0),
   ];
 
-  const shapes: THREE.Mesh[] = [];
+  const shapes = [];
   const shapeCount = 15;
 
   for (let i = 0; i < shapeCount; i++) {
@@ -83,7 +83,7 @@ function initHeroScene() {
     opacity: 0.1,
   });
 
-  const connections: THREE.Line[] = [];
+  const connections = [];
 
   function updateConnections() {
     connections.forEach(line => scene.remove(line));
